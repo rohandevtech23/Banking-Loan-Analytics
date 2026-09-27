@@ -1,0 +1,30 @@
+-- Suggested Power BI DAX measures
+
+Total Loans = COUNTROWS(accepted_loans)
+
+Total Funded Amount = SUM(accepted_loans[funded_amnt])
+
+Total Payment Received = SUM(accepted_loans[total_pymnt])
+
+Good Loans =
+CALCULATE(
+    COUNTROWS(accepted_loans),
+    accepted_loans[good_bad_loan] = "Good Loan"
+)
+
+Bad Loans =
+CALCULATE(
+    COUNTROWS(accepted_loans),
+    accepted_loans[good_bad_loan] = "Bad Loan"
+)
+
+Good Loan % = DIVIDE([Good Loans], [Total Loans])
+
+Bad Loan % = DIVIDE([Bad Loans], [Total Loans])
+
+Average Interest Rate = AVERAGE(accepted_loans[int_rate])
+
+Average DTI = AVERAGE(accepted_loans[dti])
+
+Average FICO Score = AVERAGE(accepted_loans[fico_score])
+
